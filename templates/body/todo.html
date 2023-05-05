@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+    
+{% block content %} 
+<div class="container">
+        <section>
+            <div class="create_todo">
+                <form action="{% url 'create_todo' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="title" placeholder="Create todo...">
+                    <span><i class="fa-solid fa-plus"></i><input type="submit" value=""></span>
+                </form>
+            </div>
+
+            <div class="new_todo">
+                <div class="box">
+                    <!-- <div class="block">
+                        <div class="text">
+                            <h3>Lorem ipsum dolor, sit amet consectetur adipisicing.</h3>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-pen-nib"></i>
+                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-bookmark"></i>
+                        </div>
+                    </div> -->
+                  
+                    {% for todo in Todo %}
+                    <div class="block">
+                        <div class="title_text">
+                        <div class="text">
+                            <h4 class="text-nowrap">{{todo.title}}</h4>
+                        </div>
+                        <div class="icons">
+                            <a class=" p-0 fa-1x" href="{% url 'update_todo' todo.id %}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fa-solid fa-pen"></i>
+                              </a>
+                            <a class=" p-0 fa-1x" href="{% url 'delete_todo' todo.id %}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fa-solid fa-trash"></i>
+                              </a>
+                            <i class="fa-solid fa-bookmark"></i>
+                        </div>
+                    </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+{% endblock content %}
+   
+
+  
+
+
+
